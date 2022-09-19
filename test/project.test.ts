@@ -25,8 +25,14 @@ describe("Unit Tests", function () {
         const [signer] = await this.hre.ethers.getSigners();
         const deployer = new UniswapV2Deployer();
         const { weth9 } = await deployer.deploy(signer);
-
         assert.equal(await weth9.name(), "Wrapped Ether");
+      });
+
+      it("Should deploy Factory", async function () {
+        const [signer] = await this.hre.ethers.getSigners();
+        const deployer = new UniswapV2Deployer();
+        const { factory } = await deployer.deploy(signer);
+        assert.equal(await factory.feeToSetter(), signer.address);
       });
     });
   });
