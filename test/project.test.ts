@@ -6,32 +6,28 @@ import { UniswapV2Deployer } from "../src/UniswapV2Deployer";
 
 import { useEnvironment } from "./helpers";
 
-describe("Integration tests examples", function () {
+describe("Integration Tests", function () {
   describe("Hardhat Runtime Environment extension", function () {
     useEnvironment("hardhat-project");
 
-    it("Should add the UniswapV2Deployer to hre", function () {
-      assert.instanceOf(
-        this.hre.UniswapV2Deployer,
-        UniswapV2Deployer
-      );
+    it("Should add extension UniswapV2Deployer", function () {
+      assert.instanceOf(this.hre.UniswapV2Deployer, UniswapV2Deployer);
     });
-
-    
   });
-
 });
 
-// describe("Unit Tests", function () {
-//   describe("UniswapV2Deployer", function () {
-//     describe("deploy", function () {
-//       it("Should deploy WETH9", function () {
-//         const [signer] = this.hre.eth
-//         const deployer = new UniswapV2Deployer();
-//         const { weth9 } = deployer.deploy()
+describe("Unit Tests", function () {
+  describe("UniswapV2Deployer", function () {
+    describe("deploy", function () {
+      useEnvironment("hardhat-project");
 
-//         assert.equal(field.sayHello(), "hello");
-//       });
-//     });
-//   });
-// });
+      it("Should deploy WETH9", async function () {
+        const [signer] = await this.hre.ethers.getSigners();
+        const deployer = new UniswapV2Deployer();
+        const { weth9 } = await deployer.deploy(signer);
+
+        assert.equal(await weth9.name(), "Wrapped Ether");
+      });
+    });
+  });
+});

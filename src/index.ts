@@ -3,10 +3,10 @@ import { lazyObject } from "hardhat/plugins";
 import { HardhatConfig, HardhatUserConfig } from "hardhat/types";
 import path from "path";
 
-import { UniswapV2Deployer } from "./UniswapV2Deployer";
 // This import is needed to let the TypeScript compiler know that it should include your type
 // extensions in your npm package's types file.
 import "./type-extensions";
+import { UniswapV2Deployer } from "./UniswapV2Deployer";
 
 extendConfig(
   (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) => {
