@@ -1,11 +1,12 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
-import Interface from "./Interface";
 import deployFactory from "./deployers/deployFactory";
 import deployRouter from "./deployers/deployRouter";
 import deployWETH9 from "./deployers/deployWETH9";
+import Interface from "./Interface";
 
 export class UniswapV2Deployer {
+  public Interface = Interface;
   public async deploy(signer: SignerWithAddress) {
     const { factory, Factory } = await deployFactory(signer, signer);
     const { weth9, WETH9 } = await deployWETH9(signer);
@@ -17,9 +18,6 @@ export class UniswapV2Deployer {
       Factory,
       router,
       Router,
-      Interface,
     };
   }
-
-  public Interface = Interface
 }
