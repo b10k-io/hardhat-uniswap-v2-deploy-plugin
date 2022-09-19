@@ -6,13 +6,13 @@ node_js:
   - "11"
 
 install:
-  - npm ci
+  - yarn
 
 script:
-  - npm run test
-  - npm run lint
+  - yarn test
+  - yarn lint
 
-cache: npm
+cache: yarn
 
 branches:
   only:
