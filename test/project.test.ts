@@ -2,6 +2,9 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import ERC20 from "@uniswap/v2-core/build/ERC20.json";
 import IUniswapV2PairBuild from "@uniswap/v2-core/build/IUniswapV2Pair.json";
+import IUniswapV2ERC20Build from "@uniswap/v2-core/build/IUniswapV2ERC20.json";
+import IUniswapV2FactoryBuild from "@uniswap/v2-core/build/IUniswapV2Factory.json";
+import IUniswapV2Router02Build from "@uniswap/v2-periphery/build/IUniswapV2Router02.json";
 import { assert, expect } from "chai";
 import { BigNumber, constants, Contract, ContractFactory, utils } from "ethers";
 
@@ -40,7 +43,7 @@ describe("Integration Tests", function () {
       const deployer = new UniswapV2Deployer();
       const result = await deployer.deploy(signer);
 
-      IUniswapV2Pair = result.IUniswapV2Pair
+      IUniswapV2Pair = result.Interface.IUniswapV2Pair
       factory = result.factory;
       router = result.router;
       weth9 = result.weth9;
@@ -123,11 +126,12 @@ describe("Unit Tests", function () {
         assert.equal(await router.WETH(), weth9.address);
       });
 
-      it("Should interface IUniswapV2Pair", async function () {
-        const [signer] = await this.hre.ethers.getSigners();
+      it("Should have Interface", async function () {
         const deployer = new UniswapV2Deployer();
-        const { IUniswapV2Pair } = await deployer.deploy(signer);
-        expect(IUniswapV2Pair.abi).to.eql(IUniswapV2PairBuild.abi);
+        expect(deployer.Interface.IUniswapV2Pair.abi).to.eql(IUniswapV2PairBuild.abi);
+        expect(deployer.Interface.IUniswapV2ERC20.abi).to.eql(IUniswapV2ERC20Build.abi);
+        expect(deployer.Interface.IUniswapV2Factory.abi).to.eql(IUniswapV2FactoryBuild.abi);
+        expect(deployer.Interface.IUniswapV2Router02.abi).to.eql(IUniswapV2Router02Build.abi);
       });
     });
   });
