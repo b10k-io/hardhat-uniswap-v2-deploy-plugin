@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Hardhat TypeScript plugin boilerplate",
   "repository": "github:nomiclabs/hardhat-ts-plugin-boilerplate",
-  "author": "Nomic Labs LLC",
+  "author": "[B10K.IO]",
   "license": "MIT",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -50,5 +50,8 @@
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
     "ethers": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
