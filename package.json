@@ -1,7 +1,7 @@
 {
   "name": "@b10k.io/hardhat-ts-plugin-boilerplate",
   "version": "1.0.2",
-  "description": "Hardhat plugin to deploy UniswapV2 on any network.",
+  "description": "Simple Hardhat plugin that allows you to deploy UniswapV2 (Factory, Router, WETH9) to your network.",
   "repository": "github:nomiclabs/hardhat-ts-plugin-boilerplate",
   "author": "[B10K.IO]",
   "license": "MIT",
