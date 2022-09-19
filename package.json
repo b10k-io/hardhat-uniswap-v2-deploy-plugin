@@ -1,7 +1,7 @@
 {
   "name": "@b10k.io/hardhat-ts-plugin-boilerplate",
   "version": "1.0.2",
-  "description": "Hardhat TypeScript plugin boilerplate",
+  "description": "Hardhat plugin to deploy UniswapV2 on any network.",
   "repository": "github:nomiclabs/hardhat-ts-plugin-boilerplate",
   "author": "[B10K.IO]",
   "license": "MIT",
@@ -11,7 +11,10 @@
     "ethereum",
     "smart-contracts",
     "hardhat",
-    "hardhat-plugin"
+    "hardhat-plugin",
+    "polygon",
+    "bsc",
+    "binance"
   ],
   "scripts": {
     "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
