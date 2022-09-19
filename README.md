@@ -1,58 +1,79 @@
-# Hardhat TypeScript plugin boilerplate
+[![Build](https://github.com/b10k-io/hardhat-uniswap-v2-deploy-plugin/actions/workflows/test.yml/badge.svg)](https://github.com/b10k-io/hardhat-uniswap-v2-deploy-plugin/actions/workflows/test.yml)
 
-This is a sample Hardhat plugin written in TypeScript. Creating a Hardhat plugin
-can be as easy as extracting a part of your config into a different file and
-publishing it to npm.
+# hardhat-uniswap-v2-deploy-plugin
 
-This sample project contains an example on how to do that, but also comes with
-many more features:
+Simple hardhat plugin that allows you to deploy UniswapV2 (Factory, Router, WETH9) to your network.
 
-- A mocha test suite ready to use
-- TravisCI already setup
-- A package.json with scripts and publishing info
-- Examples on how to do different things
+[Hardhat](https://hardhat.org) plugin. 
+
+## What
+
+This plugin extends your Hardhat Runtime Environment, allowing you to deploy in one command the full UniswapV2 stack (Factory, Router, WETH9). You can use it to test features such as pair creation, liquidity provisioning, and swaps.
+
+Additionally, you can use the Interfaces (IUniswapV2Factory, IUniswapV2Router, and IUniswapV2Pair) to communicate directly with testnet / mainnet.
+
+Feedback, improvment suggestions are welcome.
 
 ## Installation
 
-To start working on your project, just run
+Install the plugin.
 
 ```bash
-npm install
+npm install --save-dev hardhat-uniswap-v2-deploy-plugin
 ```
 
-## Plugin development
+or 
 
-Make sure to read our [Plugin Development Guide](https://hardhat.org/advanced/building-plugins.html) to learn how to build a plugin.
+```bash
+yarn add --dev hardhat-uniswap-v2-deploy-plugin
+```
 
-## Testing
+Import the plugin in your `hardhat.config.js`:
 
-Running `npm run test` will run every test located in the `test/` folder. They
-use [mocha](https://mochajs.org) and [chai](https://www.chaijs.com/),
-but you can customize them.
+```js
+require("hardhat-uniswap-v2-deploy-plugin");
+```
 
-We recommend creating unit tests for your own modules, and integration tests for
-the interaction of the plugin with Hardhat and its dependencies.
+Or if you are using TypeScript, in your `hardhat.config.ts`:
 
-## Linting and autoformat
+```ts
+import "hardhat-uniswap-v2-deploy-plugin";
+```
 
-All of Hardhat projects use [prettier](https://prettier.io/) and
-[tslint](https://palantir.github.io/tslint/).
+## Environment extensions
 
-You can check if your code style is correct by running `npm run lint`, and fix
-it with `npm run lint:fix`.
+The UniswapV2Deployer extension allows you to deploy the UniswapV2 stack on your network.
 
-## Building the project
+This plugin extends the Hardhat Runtime Environment by adding an `UniswapV2Deployer` field
+whose type is `UniswapV2Deployer`.
 
-Just run `npm run build` ️👷
+## Usage
 
-## README file
+It's so easy.
 
-This README describes this boilerplate project, but won't be very useful to your
-plugin users.
+```ts
+import { ethers, UniswapV2Deployer } from "hardhat"
 
-Take a look at `README-TEMPLATE.md` for an example of what a Hardhat plugin's
-README should look like.
+async function main() {
+  [signer] = await this.hre.ethers.getSigners();
+  const deployer = new UniswapV2Deployer();
+  const { factory, router, weth9 } = await deployer.deploy(signer);
 
-## Migrating from Buidler?
+  // Now you can interact with the different UniswapV2 contracts
+  // ...
+}
 
-Take a look at [the migration guide](MIGRATION.md)!
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
+
+There are no additional steps you need to take for this plugin to work.
+
+## Detailed Usage Example
+
+Please see [protect.test.ts](test/project.test.ts) file. It shows you how to deploy and interact with the contracts i.e. adding liquidity, swapping tokens.
+

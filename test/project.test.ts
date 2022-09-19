@@ -11,7 +11,6 @@ import { BigNumber, constants, Contract, ContractFactory, utils } from "ethers";
 import { UniswapV2Deployer } from "../src/UniswapV2Deployer";
 
 import { useEnvironment } from "./helpers";
-import addLiquidityETH from "./helpers/addLiquidityETH";
 
 function eth(n: number): BigNumber {
   return utils.parseEther(n.toString());
@@ -58,14 +57,14 @@ describe("Integration Tests", function () {
     });
 
     it("Should add liquidity", async function () {
-      await addLiquidityETH(
-        router,
-        token,
+      await router.addLiquidityETH(
+        token.address,
         AMOUNT_TOKEN,
         AMOUNT_TOKEN,
         AMOUNT_WETH9,
-        signer,
-        constants.MaxInt256
+        signer.address,
+        constants.MaxInt256,
+        { value: AMOUNT_WETH9 }
       );
 
       const pairAddr = factory.getPair(token.address, weth9.address);
@@ -80,14 +79,14 @@ describe("Integration Tests", function () {
     });
 
     it("Should swap", async function () {
-      await addLiquidityETH(
-        router,
-        token,
+      await router.addLiquidityETH(
+        token.address,
         AMOUNT_TOKEN,
         AMOUNT_TOKEN,
         AMOUNT_WETH9,
-        signer,
-        constants.MaxInt256
+        signer.address,
+        constants.MaxInt256,
+        { value: AMOUNT_WETH9 }
       );
 
       const beforeETH = await signer.getBalance();
