@@ -1,6 +1,5 @@
 // tslint:disable-next-line no-implicit-dependencies
 import { assert } from "chai";
-import path from "path";
 
 import { UniswapV2Deployer } from "../src/UniswapV2Deployer";
 
@@ -18,9 +17,9 @@ describe("Integration Tests", function () {
 
 describe("Unit Tests", function () {
   describe("UniswapV2Deployer", function () {
-    describe("deploy", function () {
-      useEnvironment("hardhat-project");
+    useEnvironment("hardhat-project");
 
+    describe("Deployment", function () {
       it("Should deploy WETH9", async function () {
         const [signer] = await this.hre.ethers.getSigners();
         const deployer = new UniswapV2Deployer();
@@ -33,6 +32,14 @@ describe("Unit Tests", function () {
         const deployer = new UniswapV2Deployer();
         const { factory } = await deployer.deploy(signer);
         assert.equal(await factory.feeToSetter(), signer.address);
+      });
+
+      it("Should deploy Router", async function () {
+        const [signer] = await this.hre.ethers.getSigners();
+        const deployer = new UniswapV2Deployer();
+        const { router, factory, weth9 } = await deployer.deploy(signer);
+        assert.equal(await router.factory(), factory.address);
+        assert.equal(await router.WETH(), weth9.address);
       });
     });
   });
