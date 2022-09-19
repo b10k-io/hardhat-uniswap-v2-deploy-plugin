@@ -77,3 +77,33 @@ There are no additional steps you need to take for this plugin to work.
 
 Please see [protect.test.ts](test/project.test.ts) file. It shows you how to deploy and interact with the contracts i.e. adding liquidity, swapping tokens.
 
+Below is a full example of the usage.
+
+```typescript
+const [signer] = await ethers.getSigners()
+const { weth9, factory, router } = await UniswapV2Deployer.deploy(signer)
+const Token = await ethers.getContractFactory("Token")
+const token = await Token.deploy(eth(1000))
+await token.deployed()
+
+await weth9.approve(router.address, eth(1000))
+await token.approve(router.address, eth(1000))
+
+await router.addLiquidityETH(
+    token.address,
+    eth(1000),
+    eth(1000),
+    eth(100),
+    signer.address,
+    constants.MaxUint256,
+    { value: eth(1000) }
+)
+
+await router.swapExactETHForTokens(
+    0,
+    [weth9.address, token.address],
+    signer.address,
+    constants.MaxUint256,
+    { value: eth(1) }
+);
+```
