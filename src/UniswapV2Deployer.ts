@@ -1,5 +1,6 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
+import IUniswapV2Pair from "./abi/IUniswapV2Pair";
 import deployFactory from "./deployers/deployFactory";
 import deployRouter from "./deployers/deployRouter";
 import deployWETH9 from "./deployers/deployWETH9";
@@ -18,6 +19,7 @@ export class UniswapV2Deployer {
       Factory,
       router,
       Router,
+      IUniswapV2Pair,
     };
   }
 }
