@@ -1,6 +1,6 @@
 {
-  "name": "hardhat-ts-plugin-boilerplate",
-  "version": "0.0.1",
+  "name": "@b10k.io/hardhat-ts-plugin-boilerplate",
+  "version": "1.0.0",
   "description": "Hardhat TypeScript plugin boilerplate",
   "repository": "github:nomiclabs/hardhat-ts-plugin-boilerplate",
   "author": "Nomic Labs LLC",
