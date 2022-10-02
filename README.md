@@ -32,13 +32,13 @@ yarn add --dev hardhat-uniswap-v2-deploy-plugin
 Import the plugin in your `hardhat.config.js`:
 
 ```js
-require("hardhat-uniswap-v2-deploy-plugin");
+require("@b10k.io/hardhat-uniswap-v2-deploy-plugin");
 ```
 
 Or if you are using TypeScript, in your `hardhat.config.ts`:
 
 ```ts
-import "hardhat-uniswap-v2-deploy-plugin";
+import "@b10k.io/hardhat-uniswap-v2-deploy-plugin";
 ```
 
 ## Environment extensions
