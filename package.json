@@ -1,8 +1,8 @@
 {
-  "name": "@b10k.io/hardhat-ts-plugin-boilerplate",
-  "version": "1.0.2",
+  "name": "@b10k.io/hardhat-uniswap-v2-deploy-plugin",
+  "version": "1.0.3",
   "description": "Simple Hardhat plugin that allows you to deploy UniswapV2 (Factory, Router, WETH9) to your network.",
-  "repository": "github:nomiclabs/hardhat-ts-plugin-boilerplate",
+  "repository": "github:b10k-io/hardhat-uniswap-v2-deploy-plugin",
   "author": "[B10K.IO]",
   "license": "MIT",
   "main": "dist/src/index.js",
@@ -14,7 +14,9 @@
     "hardhat-plugin",
     "polygon",
     "bsc",
-    "binance"
+    "binance",
+    "pancakeswap",
+    "UniswapV2"
   ],
   "scripts": {
     "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
