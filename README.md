@@ -20,13 +20,13 @@ Feedback, improvment suggestions are welcome.
 Install the plugin.
 
 ```bash
-npm install --save-dev hardhat-uniswap-v2-deploy-plugin
+npm install --save-dev @b10k.io/hardhat-uniswap-v2-deploy-plugin
 ```
 
 or 
 
 ```bash
-yarn add --dev hardhat-uniswap-v2-deploy-plugin
+yarn add --dev @b10k.io/hardhat-uniswap-v2-deploy-plugin
 ```
 
 Import the plugin in your `hardhat.config.js`:
