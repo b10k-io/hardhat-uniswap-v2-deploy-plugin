@@ -1,6 +1,6 @@
 {
   "name": "@b10k.io/hardhat-uniswap-v2-deploy-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple Hardhat plugin that allows you to deploy UniswapV2 (Factory, Router, WETH9) to your network.",
   "repository": "github:b10k-io/hardhat-uniswap-v2-deploy-plugin",
   "author": "[B10K.IO]",
